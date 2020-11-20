@@ -4,7 +4,7 @@ class Spaceship extends Floater
    corners=4;  //the number of corners, a triangular floater has 3   
    xCorners= new int[] {-8,16,-8,-2};   
    yCorners= new int[] {  -8,0,8,0};
-   myColor= color(1,80,20);   
+   myColor= color(1,180,220);   
    myCenterX=myCenterY=400; //holds center coordinates   
    myXspeed=myYspeed=0; //holds the speed of travel in the x and y directions   
    myPointDirection=0; //holds current direction the ship is pointing
