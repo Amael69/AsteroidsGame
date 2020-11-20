@@ -5,8 +5,8 @@ public void setup()
 {
   size(800,800);
   spaceship= new Spaceship();
-  stars = new Star[10];
-  for (int i=0; 1<stars.length;i++) {
+  stars = new Star[1000];
+  for (int i=0; i<stars.length;i++) {
     stars[i]=new Star();
   }
   //your code here
@@ -15,7 +15,7 @@ public void draw()
 {
   background(0);
   
- for (int i=0; 1<stars.length;i++) {
+ for (int i=0; i<stars.length;i++) {
     stars[i].show();
  }
 spaceship.show();
