@@ -2,6 +2,7 @@
 Spaceship spaceship;
 Star[] stars;
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+ArrayList <Bullet> bulletList;
 public void setup() 
 {
   size(800,800);
@@ -9,12 +10,13 @@ public void setup()
   stars = new Star[1000];
   for (int i=0; i<stars.length;i++) {
     stars[i]=new Star();
-    oneAsteroid= new Asteroid();
   }
   for(int i = 0; i < 35; i++){
       asteroids.add(new Asteroid());
   }
+  bulletList = new ArrayList <Bullet>();
 }
+
 public void draw() 
 {
   background(0);
@@ -23,24 +25,45 @@ public void draw()
     stars[i].show();
  }
  for(int i = 0; i < asteroids.size(); i++) {
-   if (dist(asteroids.get(i).getX(), asteroids.get(i).getY(), spaceship.getX(), spaceship.getY()) < 10) {
+   if (dist(asteroids.get(i).getX(), asteroids.get(i).getY(), 
+         spaceship.getX(), spaceship.getY()) < 10) {
      asteroids.remove(i);
      break;
+     }
+ }
+   
+  for (int i = 0; i< asteroids.size(); i++) {
+     for(int j = 0; j < bulletList.size(); j++) {
+   if (dist(asteroids.get(i).getX(), asteroids.get(i).getY(), 
+             bulletList.get(j).getMyX(),bulletList.get(j).getMyY()) < 10) {
+     asteroids.remove(i);
+     break;
+     } 
    }
  }
    
-   for(int i = 0; i < asteroids.size(); i++){ 
+  for(int i = 0; i < asteroids.size(); i++){ 
       asteroids.get(i).show();
       asteroids.get(i).move();
    }
    for(int i = 0; i < asteroids.size(); i++){ 
       asteroids.get(i).show();
       asteroids.get(i).move();
+   }
+     for(int i = 0; i < bulletList.size(); i++){ 
+      bulletList.get(i).show();
+      bulletList.get(i).move();
+   }
+     for(int i = 0; i < bulletList.size(); i++){ 
+      if ((bulletList.get(i).getCountDown())== 0) {
+        // remove the bullet
+        bulletList.remove(i);
+        break;
+      }
    }
 spaceship.show();
 spaceship.move();
-oneAsteroid.show();
-oneAsteroid.move();
+
 }
 
 public void keyPressed(){
@@ -56,6 +79,7 @@ public void keyPressed(){
     else if (key=='s'){
     spaceship.accelerate(3);
   }
+  else if (key=='b'){
+    bulletList.add(new Bullet(spaceship));
 }
-
-Asteroid oneAsteroid;
+}
