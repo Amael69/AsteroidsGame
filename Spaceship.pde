@@ -25,4 +25,17 @@ public float getX(){
 public float getY(){
   return (float) myCenterY;
 }
+
+public float getMyXspeed () {
+  return (float) myXspeed;
+}
+
+public float getMyYspeed () {
+  return (float) myYspeed;
+}
+
+public float getMyDirection () {
+  return (float) myPointDirection;
+}
+
 }
